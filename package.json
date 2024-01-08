@@ -1,8 +1,9 @@
 {
+  "export": "next export",
   "name": "syntax-highlighting",
   "version": "0.1.0",
-  "private": true,
   "homepage": "https://situn09.github.io/formik-webapp",
+  "private": true,
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

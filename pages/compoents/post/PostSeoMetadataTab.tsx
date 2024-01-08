@@ -54,7 +54,7 @@ const PostSeoMetadataTab = () => {
           <span>Job Location</span>
         </label>
         <Field name="location" type="text" className="input input-bordered" placeholder="description" />
-        <UpdatePostButton url={ undefined} enable={ enable} isSubmit={true}/>
+        {/* <UpdatePostButton url={ undefined} enable={ enable} isSubmit={true}/> */}
         </div>
         </Formik>
     </div>

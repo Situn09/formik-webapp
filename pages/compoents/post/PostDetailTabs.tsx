@@ -9,11 +9,26 @@ import * as Yup from "yup";
 import UpdatePostButton from './UpdatePostButton';
 import { ErrorMessage, Field, Formik } from 'formik';
 
-const First = ({ global, setGlobal, setTab }) => {
+type func = React.Dispatch<React.SetStateAction<{
+  title: string;
+  opening: string;
+  gender: string;
+  urgency: string;
+  jobTitle: string;
+  detail: string;
+  location: string;
+  mode: string;
+  duration: string;
+  jobLocation: string;
+}>>;
+
+type funcStr = React.Dispatch<React.SetStateAction<string>>;
+
+const First = ({ global, setGlobal , setTab }:{global:any, setGlobal:func, setTab:funcStr})=> {
   const infoSchema = Yup.object({
     title: Yup.string().min(2).max(25).required("Please enter your title"),
     opening: Yup.string().required("Please enter your job opening position"),
-    gender: Yup.string().required("Please select your gneder"),
+    gender: Yup.string().required("Please select your gender"),
     urgency: Yup.string().required("Please select your urgency level")
     // name: Yup.string().min(2).max(25).required("Please enter your name"),
     // email: Yup.string().email().required("Please enter your email"),
@@ -46,17 +61,17 @@ const First = ({ global, setGlobal, setTab }) => {
         <label className='label text-accent'>
           <span>Requisition Title</span>
         </label>
-          <Field name="title" type="text" className="input input-bordered" onKeyUp={(e) => { setGlobal({...global,title:e.target.value}) }} placeholder="write your title" />
+          <Field name="title" type="text" className="input input-bordered" onKeyUp={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global,title:(e.target as HTMLInputElement).value}) }} placeholder="write your title" />
 
         <label className='label text-accent'>
           <span>Numbers of Openings</span>
         </label>
-        <Field name="opening" type="text" className="input input-bordered" onKeyUp={(e) => { setGlobal({...global,opening:e.target.value}) }} placeholder="tell your opening position" />
+        <Field name="opening" type="text" className="input input-bordered" onKeyUp={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global,opening:(e.target as HTMLInputElement).value}) }} placeholder="tell your opening position" />
 
         <label className='label text-accent'>
           <span>Gender</span>
         </label>
-          <Field name="gender" as='select' value={ global.gender} type="text" className="input input-bordered" onChange={(e) => { setGlobal({...global, gender:e.target.value}) }} placeholder="choose your gender" >
+          <Field name="gender" as='select' value={ global.gender} type="text" className="input input-bordered" onChange={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global, gender:(e.target as HTMLInputElement).value}) }} placeholder="choose your gender" >
           
             <option value="male">Male</option>
           <option value="female">Female</option>
@@ -66,7 +81,7 @@ const First = ({ global, setGlobal, setTab }) => {
         <label className='label text-accent'>
           <span>Urgency</span>
         </label>
-        <Field name="urgency" as='select' value={ global.urgency} type="text" className="input input-bordered" onChange={(e) => { setGlobal({...global, urgency:e.target.value}) }} placeholder="choose your requirment" >
+        <Field name="urgency" as='select' value={ global.urgency} type="text" className="input input-bordered" onChange={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global, urgency:(e.target as HTMLInputElement).value}) }} placeholder="choose your requirment" >
           <option value="urgent">Urgent</option>
           <option value="immediate">Immediate Join</option>
           <option value="relaxed">Relaxed </option>
@@ -78,7 +93,7 @@ const First = ({ global, setGlobal, setTab }) => {
   )
 }
 
-const Second = ({global, setGlobal, setTab}) => {
+const Second = ({global, setGlobal, setTab}:{global:any, setGlobal:func, setTab:funcStr}) => {
 
   const [enable, setEnable] = useState(false);
   const initialValues = {
@@ -103,17 +118,17 @@ const Second = ({global, setGlobal, setTab}) => {
         <label className='label text-accent'>
           <span>Job Title</span>
         </label>
-        <Field  name="title" className="input input-bordered" onKeyUp={(e) => { setGlobal({...global,jobTitle:e.target.value}) }} placeholder="Enter Job Title" />
+        <Field  name="title" className="input input-bordered" onKeyUp={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global,jobTitle:(e.target as HTMLInputElement).value}) }} placeholder="Enter Job Title" />
 
         <label className='label text-accent'>
           <span>Job Detail</span>
         </label>
-        <Field  name="detail" className="input input-bordered" onKeyUp={(e) => { setGlobal({...global,detail:e.target.value}) }} placeholder="Enter Job Detail" />
+        <Field  name="detail" className="input input-bordered" onKeyUp={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global,detail:(e.target as HTMLInputElement).value}) }} placeholder="Enter Job Detail" />
 
         <label className='label text-accent'>
           <span>Job Location</span>
         </label>
-        <Field  name="jobLocation" className="input input-bordered" onKeyUp={(e) => { setGlobal({...global,jobLocation:e.target.value}) }} placeholder="Enter Job Location" />
+        <Field  name="jobLocation" className="input input-bordered" onKeyUp={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global,jobLocation:(e.target as HTMLInputElement).value}) }} placeholder="Enter Job Location" />
           <div style={{ display: "flex" }}>
             <div>
         <UpdatePostButton page={"first"} setTab={setTab} global={global} enable={enable} label="Previous" objCheck={["title", "detail", "jobLocation"]} />
@@ -126,7 +141,7 @@ const Second = ({global, setGlobal, setTab}) => {
   )
 }
 
-const Last = ({global, setGlobal, setTab}) => {
+const Last = ({global, setGlobal, setTab}:{global:any, setGlobal:func, setTab:funcStr}) => {
   const [enable, setEnable] = useState(false);
   const initialValues = {
     mode: "",
@@ -150,7 +165,7 @@ const Last = ({global, setGlobal, setTab}) => {
         <label className='label text-accent'>
           <span>Interview Mode</span>
         </label>
-        <Field as="select" name="mode" type="text" className="input input-bordered" onChange={(e) => { setGlobal({...global,mode:e.target.value}) }} placeholder="title" >
+        <Field as="select" name="mode" type="text" className="input input-bordered" onChange={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global,mode:(e.target as HTMLInputElement).value}) }} placeholder="title" >
           <option value="online">Online</option>
           <option value="offline">Offline</option>
         </Field>
@@ -158,7 +173,7 @@ const Last = ({global, setGlobal, setTab}) => {
         <label className='label text-accent'>
           <span>Interview Duration</span>
         </label>
-        <Field as="select" name="duration" type="text" className="input input-bordered" onChange={(e) => { setGlobal({...global,duration:e.target.value}) }} placeholder="description" >
+        <Field as="select" name="duration" type="text" className="input input-bordered" onChange={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global,duration:(e.target as HTMLInputElement).value}) }} placeholder="description" >
         
             <option value="short">Short</option>
           <option value="medium">Medium</option>
@@ -168,7 +183,7 @@ const Last = ({global, setGlobal, setTab}) => {
         <label className='label text-accent'>
           <span>Interview Location</span>
         </label>
-        <Field name="location" type="text" className="input input-bordered" onKeyUp={(e) => { setGlobal({...global,location:e.target.value}) }} placeholder="description" />
+        <Field name="location" type="text" className="input input-bordered" onKeyUp={(e:React.KeyboardEvent<HTMLInputElement>) => { setGlobal({...global,location:(e.target as HTMLInputElement).value}) }} placeholder="description" />
         <div style={{display:"flex"}}>
         <UpdatePostButton page={"second"} global={global} setTab={setTab} enable={enable} label="Previous" objCheck={["mode", "location", "duration"]}/>
           <UpdatePostButton page={"last"} global={global} setTab={setTab} enable={enable} label="Submit" objCheck={["mode", "location", "duration"]}/>

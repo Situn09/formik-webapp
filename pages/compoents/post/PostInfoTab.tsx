@@ -3,6 +3,7 @@ import { Field, Formik } from 'formik'
 import React, { useState } from 'react'
 import UpdatePostButton from './UpdatePostButton'
 import * as Yup from "yup";
+import { bodyStreamToNodeStream } from 'next/dist/server/body-streams';
 
 export const infoSchema = Yup.object({
   title: Yup.string().min(2).max(25).required("Please enter your title"),
@@ -17,8 +18,9 @@ export const infoSchema = Yup.object({
   //   .oneOf([Yup.ref("password"), null], "Password must match"),
 });
 
+type funcStr = React.Dispatch<React.SetStateAction<string>>;
 
-const PostInfoTab = ({setTab}) => {
+const PostInfoTab = ({setTab}:{setTab:funcStr}) => {
   const initialValues = {
     title: "",
     opening: "",
@@ -67,7 +69,7 @@ const PostInfoTab = ({setTab}) => {
           <option value="immediate">Immediate Join</option>
           <option value="relaxed">Relaxed </option>
         </Field>
-          <UpdatePostButton page={"second"} setTab={setTab} enable={enable} isSubmit={ false} />
+          {/* <UpdatePostButton page={"second"} setTab={setTab} enable={enable} isSubmit={ false} /> */}
         </div>
         </Formik>
     </div>

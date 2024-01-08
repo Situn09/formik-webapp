@@ -40,7 +40,7 @@ const PostContentTab = () => {
           <span>Job Location</span>
         </label>
         <Field  name="location" className="input input-bordered" placeholder="Enter Job Location" />
-        <UpdatePostButton url={`/cms/post/hello-world/seo`} enable={enable} isSubmit={false}/>
+        {/* //<UpdatePostButton  enable={enable} isSubmit={false}/>  url={`/cms/post/hello-world/seo`} */}
         </div>
         </Formik>
     </div>
